@@ -37,11 +37,6 @@
   text-transform: uppercase;
 }
 
-.abstract-design {
-  width: 346px;
-  height: 346px;
-}
-
 .info-cta {
   display: flex;
   flex-direction: column;
@@ -61,11 +56,13 @@
   font-weight: 600;
   text-transform: uppercase;
 }
+
 .arrow-icon {
   font-size: 40px;
-  line-height: 1;   
-  display: inline-block; 
+  line-height: 1;
+  display: inline-block;
 }
+
 .cta-button {
   display: flex;
   align-items: center;
@@ -83,50 +80,49 @@
   text-transform: uppercase;
 }
 
-.services-section {
-  border: 1px solid #1c1c21;
-  background-color: #0e0e10;
-}
-
-.services-list {
+/* === Updated two-column services list styles === */
+.services-list-columns {
   display: flex;
-  padding: 20px;
-  gap: 20px;
-  overflow-x: auto;
+  justify-content: center;
+  gap: 60px;
+  padding: 0 162px;
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
-.service-item {
+.services-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.service-item-vertical {
   display: flex;
   align-items: center;
-  gap: 16px; /* Increased for better spacing */
-  margin-bottom: 16px; /* Slightly more breathing room */
+  gap: 16px;
+  color: #afb0b6;
+  font-family: "Manrope", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
 }
 
-.camera-circle {
-  width: 44px; /* Larger circle */
-  height: 44px;
-  border-radius: 50%; /* Perfect circle */
-  background-color: #f0f0f0;
+.service-item-vertical .camera-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #4a2ced;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(74, 44, 237, 0.5);
 }
 
-.camera-icon {
-  width: 22px;
-  height: 22px;
-}
-
-
-
-.service-name {
-  color: #d6d0fb;
-  font-family: "Manrope", sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  text-transform: uppercase;
+.service-item-vertical .camera-icon {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1);
 }
 
 .gallery-grid {
@@ -150,6 +146,57 @@
   display: block;
 }
 
+.gallery-item:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 10px #4a2ced, 0 0 30px #4a2ced;
+}
+
+.title-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 20px 10%;
+}
+
+.photography-title {
+  color: #ffffff;
+  font-family: "Manrope", sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.photography-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 3px;
+  width: 220px;
+  background: linear-gradient(90deg, #4a2ced, #8c52ff);
+  border-radius: 2px;
+}
+
+.view-all-btn {
+  background-color: #4a2ced;
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-family: "Manrope", sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(74, 44, 237, 0.4);
+}
+
+.view-all-btn:hover {
+  box-shadow: 0 0 15px rgba(74, 44, 237, 0.7), 0 0 30px rgba(74, 44, 237, 0.5);
+  transform: scale(1.05);
+}
 
 @media (max-width: 991px) {
   .info-section {
@@ -164,11 +211,6 @@
     font-size: 60px;
   }
 
-  .abstract-design {
-    width: 250px;
-    height: 250px;
-  }
-
   .cta-text,
   .cta-subtitle {
     font-size: 48px;
@@ -178,58 +220,28 @@
     padding: 15px 40px;
   }
 
-  .service-icon {
-    width: 32px;
-    height: 32px;
-  }
-
-  .service-name {
-    font-size: 16px;
-  }
-
   .gallery-grid {
     padding: 40px 80px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-}
 
-@media (max-width: 640px) {
-  .info-section {
-    padding: 40px 20px;
+  /* Responsive two-column services list */
+  .services-list-columns {
+    padding: 0 80px;
+    gap: 40px;
   }
 
-  .info-subtitle {
-    font-size: 18px;
+  .service-item-vertical {
+    font-size: 16px;
   }
 
-  .info-title {
-    font-size: 40px;
+  .service-item-vertical .camera-circle {
+    width: 32px;
+    height: 32px;
   }
 
-  .abstract-design {
-    display: none;
-  }
-
-  .cta-text,
-  .cta-subtitle {
-    font-size: 36px;
-  }
-
-  .cta-button {
-    padding: 12px 30px;
-  }
-
-  .service-icon {
-    width: 24px;
-    height: 24px;
-  }
-
-  .service-name {
-    font-size: 14px;
-  }
-
-  .gallery-grid {
-    padding: 20px;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+  .service-item-vertical .camera-icon {
+    width: 16px;
+    height: 16px;
   }
 }

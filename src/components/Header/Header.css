@@ -5,6 +5,16 @@
   flex-direction: column;
   width: 100%;
   background-color: #131316;
+
+  /* Sticky header */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  /* Add a subtle shadow for separation */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .header-container {
@@ -82,6 +92,11 @@
 .header-divider {
   height: 1px;
   background-color: #1c1c21;
+}
+
+/* Main content padding to avoid overlap with fixed header */
+.main-content {
+  padding-top: 100px; /* Adjust if your header height changes */
 }
 
 @media (max-width: 991px) {

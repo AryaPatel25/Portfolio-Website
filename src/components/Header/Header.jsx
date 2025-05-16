@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Logo from "../../assets/Logo";
 import "./Header.css";
 
-const Header = () => {
-  const [activeTab, setActiveTab] = useState("Home");
-
+const Header = ({ activeTab, setActiveTab }) => {
   const navItems = ["Home", "About Me", "Portfolio", "Services", "Blog"];
 
   return (
