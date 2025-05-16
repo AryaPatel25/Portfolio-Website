@@ -41,7 +41,7 @@ const HomePage = () => {
       <div className="content-wrapper">
         {/* Title row with photography title only */}
         <div className="title-row">
-          <h2 className="photography-title">Photography</h2>
+          <h2 className="photography-title">My Work:-</h2>
         </div>
 
         {/* Two-column services list */}

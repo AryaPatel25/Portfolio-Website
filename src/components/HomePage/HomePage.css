@@ -61,12 +61,20 @@
   font-size: 40px;
   line-height: 1;
   display: inline-block;
+  vertical-align: middle;
+  color:#e4e4e6;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.arrow-icon:hover {
+  transform: scale(1.2);
 }
 
 .cta-button {
   display: flex;
   align-items: center;
-  padding: 18px 50px;
+  padding: 18px 35px;
   border-radius: 100px;
   background-color: #4a2ced;
   box-shadow: 4px 4px 17.4px 0px rgba(255, 255, 255, 0.28) inset;
@@ -175,7 +183,7 @@
   left: 0;
   bottom: -6px;
   height: 3px;
-  width: 220px;
+  width: 150px;
   background: linear-gradient(90deg, #4a2ced, #8c52ff);
   border-radius: 2px;
 }
