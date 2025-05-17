@@ -49,12 +49,12 @@ const About = () => {
                 text: "name's photography beautifully captures the vibrant spirit and colors of our festivals.Every picture reflects the rich Indian culture and tradition.",
               },
               {
-                name: "Kishan Kumar",
+                name: "Harsh Patel",
                 location: "Jaipur, India",
                 text: "name skillfully captured every moment of our traditional wedding with great emotion and detail. These photos are now treasured memories.",
               },
               {
-                name: "Ram Prasad",
+                name: "Gaurav Mehta",
                 location: "Kerala, India",
                 text: "In name's photographs, you can truly feel the serene beauty and lush landscapes of Kerala. His work is deeply moving and artistic.",
               },
