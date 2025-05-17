@@ -1,7 +1,8 @@
 import React from "react";
 import "./HomePage.css";
+import AboutSection from "../AboutSection/AboutSection";
 
-const HomePage = () => {
+const HomePage = ({ setActiveTab }) => {
   const services = [
     "Event Photography",
     "Commercial Photography",
@@ -37,14 +38,14 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* New wrapper to align everything */}
+      <AboutSection preview={true} setActiveTab={setActiveTab} />
+
+
       <div className="content-wrapper">
-        {/* Title row with photography title only */}
         <div className="title-row">
           <h2 className="photography-title">My Work:-</h2>
         </div>
 
-        {/* Two-column services list */}
         <div className="services-list-columns">
           {/* Left column */}
           <div className="services-column">
@@ -100,7 +101,10 @@ const HomePage = () => {
             />
           </div>
           <div className="gallery-item">
-            <img src="/images/nature-photography.jpg" alt="Photography sample" />
+            <img
+              src="/images/nature-photography.jpg"
+              alt="Photography sample"
+            />
           </div>
           <div className="gallery-item">
             <img
