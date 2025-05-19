@@ -5,6 +5,7 @@ const AboutSection = ({ preview = false, setActiveTab }) => {
   return (
     <div className="about-section">
       <div className="about-header">
+        
         <div className="about-label">About</div>
         {preview && (
           <button

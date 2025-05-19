@@ -40,9 +40,13 @@ const HomePage = ({ setActiveTab }) => {
 
       <AboutSection preview={true} setActiveTab={setActiveTab} />
 
-
       <div className="content-wrapper">
         <div className="title-row">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets/e988908983e34bf6aa29948865286bf3/4eb2ae8ab2a996bd554b48b675226b405048c29f?placeholderIfAbsent=true"
+            className="section-icon"
+            alt=""
+          />
           <h2 className="photography-title">My Work:-</h2>
         </div>
 
