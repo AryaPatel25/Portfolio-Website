@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../firebase'; // ✅ Adjust path as needed
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import bgImage from '../../assets/login-hero-bg.jpg';
 import '../Login/Login.css';
 
@@ -38,16 +40,31 @@ const Signup = () => {
     return '';
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationError = validate();
     if (validationError) {
       setError(validationError);
       return;
     }
-    console.log('Signup Successful:', formData);
-    // After successful signup, redirect to login page
-    navigate('/');
+
+    try {
+      const { name, email, password } = formData;
+
+      // ✅ Create user
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+      // ✅ Set display name
+      await updateProfile(userCredential.user, {
+        displayName: name,
+      });
+
+      console.log('Signup successful:', userCredential.user);
+      navigate('/'); // redirect to login or homepage
+    } catch (err) {
+      console.error(err);
+      setError(err.message);
+    }
   };
 
   return (

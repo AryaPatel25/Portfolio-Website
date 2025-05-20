@@ -74,8 +74,8 @@
 // export default App;
 
 
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signuppage';
@@ -86,22 +86,59 @@ import Header from './components/Header/Header';
 import HomePage from './components/HomePage/HomePage';
 import Portfolio from './components/Portfolio/Portfolio';
 
+import ProtectedRoute from './components/ProtectedRoute';
+import { AuthContext } from './components/AuthContext';  // Import your AuthContext
+
 function App() {
   const [activeTab, setActiveTab] = useState("Home");
+  const { currentUser } = useContext(AuthContext);  // Get real user from AuthContext
 
   return (
     <Router>
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {/* Wrap main content inside this container with padding */}
       <div className="main-content">
         <Routes>
+          {/* Redirect root to login */}
+          <Route path="/" element={<Navigate to="/login" replace />} />
+
+          {/* Public routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/" element={<HomePage setActiveTab={setActiveTab} />} />
+
+          {/* Protected routes */}
+          <Route 
+            path="/home" 
+            element={
+              <ProtectedRoute isAuthenticated={!!currentUser}>
+                <HomePage setActiveTab={setActiveTab} />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/portfolio" 
+            element={
+              <ProtectedRoute isAuthenticated={!!currentUser}>
+                <Portfolio />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/about" 
+            element={
+              <ProtectedRoute isAuthenticated={!!currentUser}>
+                <About />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/contact" 
+            element={
+              <ProtectedRoute isAuthenticated={!!currentUser}>
+                <Contact />
+              </ProtectedRoute>
+            } 
+          />
         </Routes>
       </div>
 
