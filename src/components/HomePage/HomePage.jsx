@@ -1,8 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./HomePage.css";
 import AboutSection from "../AboutSection/AboutSection";
 
-const HomePage = ({ setActiveTab }) => {
+const HomePage = ({ setActiveTab = () => {} }) => {
+  console.log("HomePage rendered");
+
   const services = [
     "Event Photography",
     "Commercial Photography",
@@ -13,7 +16,6 @@ const HomePage = ({ setActiveTab }) => {
     "Branding Photography",
   ];
 
-  // Split services into two arrays: first 4 and the rest
   const leftServices = services.slice(0, 4);
   const rightServices = services.slice(4);
 
@@ -29,9 +31,9 @@ const HomePage = ({ setActiveTab }) => {
           <div className="info-cta">
             <div className="cta-wrapper">
               <div className="cta-text">Let's</div>
-              <div className="cta-button">
+              <Link to="/contact" className="cta-button" aria-label="Work Together">
                 <div className="arrow-icon">↗</div>
-              </div>
+              </Link>
             </div>
             <div className="cta-subtitle">Work Together</div>
           </div>
@@ -51,7 +53,6 @@ const HomePage = ({ setActiveTab }) => {
         </div>
 
         <div className="services-list-columns">
-          {/* Left column */}
           <div className="services-column">
             {leftServices.map((service, index) => (
               <div key={index} className="service-item-vertical">
@@ -67,7 +68,6 @@ const HomePage = ({ setActiveTab }) => {
             ))}
           </div>
 
-          {/* Right column */}
           <div className="services-column">
             {rightServices.map((service, index) => (
               <div key={index} className="service-item-vertical">
@@ -84,7 +84,6 @@ const HomePage = ({ setActiveTab }) => {
           </div>
         </div>
 
-        {/* Gallery section */}
         <section className="gallery-grid">
           <div className="gallery-item">
             <img

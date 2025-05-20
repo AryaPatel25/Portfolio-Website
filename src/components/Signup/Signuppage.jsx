@@ -1,69 +1,130 @@
 import React, { useState } from 'react';
-import './SignupPage.css';
+import { Link, useNavigate } from 'react-router-dom';
+import bgImage from '../../assets/login-hero-bg.jpg';
+import '../Login/Login.css';
 
-const SignupPage = () => {
-  const [showPassword, setShowPassword] = useState(false);
+const Signup = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError('');
+  };
+
+  const validate = () => {
+    const { name, email, password, confirmPassword } = formData;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!name || !email || !password || !confirmPassword) {
+      return 'All fields are required.';
+    }
+    if (!emailRegex.test(email)) {
+      return 'Invalid email format.';
+    }
+    if (password.length < 6) {
+      return 'Password must be at least 6 characters.';
+    }
+    if (password !== confirmPassword) {
+      return 'Passwords do not match.';
+    }
+    return '';
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationError = validate();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+    console.log('Signup Successful:', formData);
+    // After successful signup, redirect to login page
+    navigate('/');
+  };
 
   return (
-    <div className="signup-container">
-      <div className="signup-left">
-        <h1>Welcome to Design Community</h1>
-        <p className="signin-text">
-          Already have an account? <a href="#">Log in</a>
-        </p>
+    <div
+      style={{
+        position: 'relative',
+        minHeight: '100vh',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${bgImage})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        padding: '10px',
+      }}
+    >
+      <div className="wrapper">
+        <form onSubmit={handleSubmit}>
+          <h2>Register</h2>
 
-        <form className="signup-form">
-          <label>Email</label>
-          <input type="email" placeholder="Enter your email" />
-
-          <label>Username</label>
-          <input type="text" placeholder="Choose a username" />
-
-          <label>Password</label>
-          <div className="password-input-wrapper">
-            <input type={showPassword ? 'text' : 'password'} placeholder="Create a password" />
-            <button
-              type="button"
-              className="toggle-password"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? '🙈 Hide' : '👁️ Show'}
-            </button>
+          <div className="input-field">
+            <input
+              type="text"
+              name="name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+            />
+            <label>Enter your name</label>
           </div>
 
-          <ul className="password-hints">
-            <li>● Use 8 or more characters</li>
-            <li>● One Uppercase character</li>
-            <li>● One lowercase character</li>
-            <li>● One special character</li>
-            <li>● One number</li>
-          </ul>
+          <div className="input-field">
+            <input
+              type="email"
+              name="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+            />
+            <label>Enter your email</label>
+          </div>
 
-          <label className="checkbox-container">
-            <input type="checkbox" />
-            I want to receive emails about the product, feature updates, events, and promotions.
-          </label>
+          <div className="input-field">
+            <input
+              type="password"
+              name="password"
+              required
+              value={formData.password}
+              onChange={handleChange}
+            />
+            <label>Enter your password</label>
+          </div>
 
-          <p className="terms-text">
-            By creating an account, you agree to the{' '}
-            <a href="#">Terms of use</a> and <a href="#">Privacy Policy</a>.
-          </p>
+          <div className="input-field">
+            <input
+              type="password"
+              name="confirmPassword"
+              required
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
+            <label>Confirm your password</label>
+          </div>
 
-          <button className="create-account-button" disabled>
-            Create an account
-          </button>
+          {error && <p style={{ color: 'red', fontSize: '14px' }}>{error}</p>}
 
-          <p className="signin-bottom">
-            Already have an account? <a href="#">Log in</a>
-          </p>
+          <button type="submit">Sign Up</button>
+
+          <div className="register">
+            <p>Already have an account? <Link to="/">Login</Link></p>
+          </div>
         </form>
-      </div>
-
-      <div className="signup-right">
-        <img src="https://i.imgur.com/G7D0R1N.png" alt="3D Art" />
       </div>
     </div>
   );
 };
 
-export default SignupPage;
+export default Signup;

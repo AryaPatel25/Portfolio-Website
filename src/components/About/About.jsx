@@ -2,10 +2,12 @@ import React from "react";
 import AboutSection from "../AboutSection/AboutSection";
 import "./About.css";
 
-const About = () => {
+const About = ({ setActiveTab = () => {} }) => {
   return (
     <div className="about-container">
-      <AboutSection />
+      {/* Pass setActiveTab so AboutSection can use it if preview=true */}
+      <AboutSection setActiveTab={setActiveTab} />
+
       <div className="details">
         <div className="additional-details">
           <h2>My Biography</h2>

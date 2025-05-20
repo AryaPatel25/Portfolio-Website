@@ -1,9 +1,22 @@
 import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Logo from "../../assets/Logo";
 import "./Header.css";
 
-const Header = ({ activeTab, setActiveTab }) => {
-  const navItems = ["Home", "About Me", "Portfolio", "Blog"]; // no Contact Me here
+const Header = () => {
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "About Me", path: "/about" },
+    { name: "Portfolio", path: "/portfolio" },
+    { name: "Blog", path: "/blog" },  // remove if you don't have this page
+  ];
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleClick = (path) => {
+    navigate(path);
+  };
 
   return (
     <div className="header-wrapper">
@@ -21,20 +34,19 @@ const Header = ({ activeTab, setActiveTab }) => {
             <div className="nav-tabs">
               {navItems.map((item) => (
                 <div
-                  key={item}
-                  className={`nav-item ${activeTab === item ? "nav-item-active" : ""}`}
-                  onClick={() => setActiveTab(item)}
+                  key={item.name}
+                  className={`nav-item ${location.pathname === item.path ? "nav-item-active" : ""}`}
+                  onClick={() => handleClick(item.path)}
                 >
-                  {item}
+                  {item.name}
                 </div>
               ))}
             </div>
           </nav>
 
-          {/* ✅ The contact button uses setActiveTab directly */}
           <button
             className="contact-button"
-            onClick={() => setActiveTab("Contact Me")}
+            onClick={() => handleClick("/contact")}
           >
             Contact Me
           </button>

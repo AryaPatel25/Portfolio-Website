@@ -1,20 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";  // import useNavigate
 import "./AboutSection.css";
 
-const AboutSection = ({ preview = false, setActiveTab }) => {
+const AboutSection = ({ preview = false }) => {
+  const navigate = useNavigate();  // initialize navigate
+
   return (
     <div className="about-section">
       <div className="about-header">
-        
         <div className="about-label">About</div>
         {preview && (
           <button
             className="about-cta-button"
-            onClick={() => setActiveTab("About Me")}
+            onClick={() => navigate("/about")}  // navigate on click
           >
             Know More&nbsp;
             <img
-              src="https://img.icons8.com/ios-filled/24/ffffff/right--v1.png" // white arrow icon
+              src="https://img.icons8.com/ios-filled/24/ffffff/right--v1.png"
               alt="Right Arrow"
               style={{ verticalAlign: "middle" }}
             />

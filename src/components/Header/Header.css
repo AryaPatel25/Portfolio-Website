@@ -95,7 +95,7 @@
   background-color: #1c1c21;
 }
 
-/* Main content padding to avoid overlap with fixed header */
+
 .main-content {
   padding-top: 100px; /* Adjust if your header height changes */
 }

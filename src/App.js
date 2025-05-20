@@ -1,35 +1,115 @@
-import React, { useState } from "react";
-import Header from "./components/Header/Header";
-import Homepage from "./components/HomePage/HomePage";
-import Portfolio from "./components/Portfolio/Portfolio";
-import About from "./components/About/About";
-import Contact from "./components/Contact/Contact";
-import Footer from "./components/Footer/Footer";
+// import React, { useState } from "react";
+// import Header from "./components/Header/Header";
+// import Homepage from "./components/HomePage/HomePage";
+// import Portfolio from "./components/Portfolio/Portfolio";
+// import About from "./components/About/About";
+// import Contact from "./components/Contact/Contact";
+// import Footer from "./components/Footer/Footer";
 
-const App = () => {
+// const App = () => {
+//   const [activeTab, setActiveTab] = useState("Home");
+
+//   const renderPage = () => {
+//     switch (activeTab) {
+//       case "Home":
+//         return <Homepage setActiveTab={setActiveTab} />;
+//       case "About Me":
+//         return <About />;
+//       case "Portfolio":
+//         return <Portfolio />;
+//       case "Contact Me":
+//         return <Contact />;
+//       default:
+//         return <Homepage setActiveTab={setActiveTab} />;
+//     }
+//   };
+//   return (
+//     <>
+//       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+//       <div className="main-content">{renderPage()}</div>
+//       <Footer />
+//     </>
+//   );
+// };
+
+// export default App;
+
+// import React, { useState } from "react";
+// import SignUpPage from "../src/components/Signup/Signuppage";
+// import HomePage from "../src/components/HomePage/HomePage";
+
+// function App() {
+//   const [showSignUp, setShowSignUp] = useState(true);
+
+//   return (
+//     <div>
+//       {showSignUp ? (
+//         <SignUpPage onSignUpComplete={() => setShowSignUp(false)} />
+//       ) : (
+//         <HomePage />
+//       )}
+//     </div>
+//   );
+// }
+
+// export default App;
+// import React, { useState } from "react";
+// import LoginPage from "../src/components/Login/Login";
+// import HomePage from "../src/components/HomePage/HomePage";
+
+// function App() {
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+//   return (
+//     <div>
+//       {isLoggedIn ? (
+//         <HomePage />
+//       ) : (
+//         <LoginPage onLogin={() => setIsLoggedIn(true)} />
+//       )}
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Login from './components/Login/Login';
+import Signup from './components/Signup/Signuppage';
+import About from './components/About/About';
+import Contact from './components/Contact/Contact';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
+import HomePage from './components/HomePage/HomePage';
+import Portfolio from './components/Portfolio/Portfolio';
+
+function App() {
   const [activeTab, setActiveTab] = useState("Home");
 
-  const renderPage = () => {
-    switch (activeTab) {
-      case "Home":
-        return <Homepage setActiveTab={setActiveTab} />;
-      case "About Me":
-        return <About />;
-      case "Portfolio":
-        return <Portfolio />;
-      case "Contact Me":
-        return <Contact />;
-      default:
-        return <Homepage setActiveTab={setActiveTab} />;
-    }
-  };
   return (
-    <>
+    <Router>
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
-      <div className="main-content">{renderPage()}</div>
+
+      {/* Wrap main content inside this container with padding */}
+      <div className="main-content">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/" element={<HomePage setActiveTab={setActiveTab} />} />
+        </Routes>
+      </div>
+
       <Footer />
-    </>
+    </Router>
   );
-};
+}
 
 export default App;
+
+
