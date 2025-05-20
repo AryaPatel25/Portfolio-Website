@@ -100,7 +100,9 @@ const AboutSection = ({ preview = false }) => {
               </div>
 
               <div className="action-buttons">
-                <button className="action-button">Let's Work</button>
+                <button 
+                className="action-button"
+                onClick={() => navigate("/contact")}>Let's Work</button>
               </div>
             </div>
           </div>
