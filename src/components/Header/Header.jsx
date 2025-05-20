@@ -3,7 +3,7 @@ import Logo from "../../assets/Logo";
 import "./Header.css";
 
 const Header = ({ activeTab, setActiveTab }) => {
-  const navItems = ["Home", "About Me", "Portfolio", "Services", "Blog"];
+  const navItems = ["Home", "About Me", "Portfolio", "Blog"]; // no Contact Me here
 
   return (
     <div className="header-wrapper">
@@ -30,7 +30,14 @@ const Header = ({ activeTab, setActiveTab }) => {
               ))}
             </div>
           </nav>
-          <button className="contact-button">Contact Me</button>
+
+          {/* ✅ The contact button uses setActiveTab directly */}
+          <button
+            className="contact-button"
+            onClick={() => setActiveTab("Contact Me")}
+          >
+            Contact Me
+          </button>
         </div>
       </div>
       <div className="header-divider" />

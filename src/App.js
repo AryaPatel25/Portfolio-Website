@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Header from "./components/Header/Header";
 import Homepage from "./components/HomePage/HomePage";
 import Portfolio from "./components/Portfolio/Portfolio";
-import About from "./components/About/About"; // <-- Import About component here
+import About from "./components/About/About";
+import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 
 const App = () => {
@@ -11,11 +12,13 @@ const App = () => {
   const renderPage = () => {
     switch (activeTab) {
       case "Home":
-        return <Homepage setActiveTab={setActiveTab} />; // <-- pass it here
+        return <Homepage setActiveTab={setActiveTab} />;
       case "About Me":
         return <About />;
       case "Portfolio":
         return <Portfolio />;
+      case "Contact Me":
+        return <Contact />;
       default:
         return <Homepage setActiveTab={setActiveTab} />;
     }
